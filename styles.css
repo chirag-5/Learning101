@@ -28,15 +28,17 @@
 
 body {
     font-family: 'Poppins', sans-serif;
-    line-height: 1.6;
+    line-height: 1.7; /* Improved line height for better readability */
     color: var(--text-dark);
     overflow-x: hidden;
+    font-size: 16px; /* Explicit base font size for better scaling */
 }
 
 /* Typography */
 h1, h2, h3, h4, h5, h6 {
     font-weight: 600;
-    line-height: 1.3;
+    line-height: 1.4; /* Improved line height for headings */
+    margin-bottom: 1rem; /* Better spacing */
 }
 
 .section-title {
@@ -57,29 +59,45 @@ h1, h2, h3, h4, h5, h6 {
     background: var(--gradient-primary);
     border: none;
     border-radius: 50px;
-    padding: 12px 30px;
+    padding: 16px 36px; /* Larger touch targets */
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 1px;
     transition: var(--transition);
     box-shadow: var(--shadow-light);
+    font-size: 1rem; /* Explicit font size */
+    min-height: 50px; /* Minimum touch target size */
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .btn-primary:hover {
     transform: translateY(-2px);
     box-shadow: var(--shadow-medium);
     background: var(--gradient-primary);
+    filter: brightness(1.1); /* Better visual feedback */
+}
+
+.btn-primary:active {
+    transform: translateY(0); /* Improved click feedback */
+    box-shadow: var(--shadow-light);
 }
 
 .btn-outline-primary {
     border: 2px solid var(--primary-color);
     color: var(--primary-color);
     border-radius: 50px;
-    padding: 12px 30px;
+    padding: 16px 36px; /* Larger touch targets */
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 1px;
     transition: var(--transition);
+    font-size: 1rem;
+    min-height: 50px; /* Minimum touch target size */
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .btn-outline-primary:hover {
@@ -87,6 +105,11 @@ h1, h2, h3, h4, h5, h6 {
     border-color: var(--primary-color);
     transform: translateY(-2px);
     box-shadow: var(--shadow-medium);
+    color: var(--white);
+}
+
+.btn-outline-primary:active {
+    transform: translateY(0); /* Improved click feedback */
 }
 
 /* Navigation */
@@ -94,7 +117,7 @@ h1, h2, h3, h4, h5, h6 {
     background: rgba(255, 255, 255, 0.95);
     backdrop-filter: blur(10px);
     box-shadow: var(--shadow-light);
-    padding: 1rem 0;
+    padding: 1.5rem 0; /* Increased padding for better touch targets */
     transition: var(--transition);
 }
 
@@ -103,6 +126,7 @@ h1, h2, h3, h4, h5, h6 {
     font-weight: 700;
     color: var(--primary-color) !important;
     text-decoration: none;
+    padding: 0.5rem 0; /* Better touch target */
 }
 
 .brand-text {
@@ -115,19 +139,28 @@ h1, h2, h3, h4, h5, h6 {
 .nav-link {
     font-weight: 500;
     color: var(--text-dark) !important;
-    margin: 0 10px;
+    margin: 0 15px; /* Increased spacing between nav items */
+    padding: 12px 16px !important; /* Better touch targets */
     transition: var(--transition);
     position: relative;
+    border-radius: 8px; /* Rounded corners for better visual appeal */
 }
 
 .nav-link:hover {
     color: var(--primary-color) !important;
+    background-color: rgba(255, 107, 107, 0.1); /* Subtle background on hover */
+}
+
+.nav-link:focus {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 2px;
+    background-color: rgba(255, 107, 107, 0.1);
 }
 
 .nav-link::after {
     content: '';
     position: absolute;
-    bottom: -5px;
+    bottom: 8px;
     left: 50%;
     width: 0;
     height: 2px;
@@ -137,7 +170,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .nav-link:hover::after {
-    width: 100%;
+    width: 60%; /* Reduced width for better visual balance */
 }
 
 /* Hero Section */
@@ -146,6 +179,7 @@ h1, h2, h3, h4, h5, h6 {
     min-height: 100vh;
     position: relative;
     overflow: hidden;
+    padding: 80px 0 60px; /* Better spacing from navbar */
 }
 
 .hero-section::before {
@@ -167,251 +201,237 @@ h1, h2, h3, h4, h5, h6 {
 
 .hero-content {
     color: var(--white);
-    padding: 2rem 0;
+    padding: 3rem 0; /* Increased padding for better spacing */
 }
 
 .hero-title {
     font-size: 3.5rem;
     font-weight: 700;
-    margin-bottom: 1.5rem;
-    line-height: 1.2;
+    margin-bottom: 2rem; /* Increased margin for better spacing */
+    line-height: 1.3; /* Better line height */
 }
 
 .hero-subtitle {
     font-size: 1.5rem;
     font-weight: 400;
-    margin-bottom: 1.5rem;
+    margin-bottom: 2rem; /* Increased margin */
     opacity: 0.9;
+    line-height: 1.5; /* Better line height */
 }
 
 .hero-description {
-    font-size: 1.1rem;
-    margin-bottom: 2.5rem;
+    font-size: 1.2rem; /* Slightly larger font */
+    margin-bottom: 3rem; /* More spacing */
     opacity: 0.8;
-    line-height: 1.7;
+    line-height: 1.8; /* Improved readability */
+    max-width: 90%; /* Prevent text from being too wide */
 }
 
 .hero-buttons {
     margin-top: 2rem;
+    display: flex;
+    gap: 1rem; /* Better spacing between buttons */
+    flex-wrap: wrap;
 }
 
 .hero-image {
     text-align: center;
-    padding: 2rem;
+    padding: 3rem 2rem; /* Increased padding */
 }
 
 .image-placeholder {
     background: rgba(255, 255, 255, 0.1);
     border-radius: var(--border-radius);
-    padding: 3rem;
+    padding: 4rem 3rem; /* Increased padding */
     backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.2);
     color: var(--white);
+    min-height: 300px; /* Minimum height for better visual balance */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 /* About Section */
 .about-section {
-    padding: 5rem 0;
+    padding: 6rem 0; /* Increased padding for better spacing */
 }
 
 .about-content h3 {
     color: var(--text-dark);
     font-size: 2rem;
+    margin-bottom: 1.5rem; /* Better spacing */
 }
 
 .about-content p {
     font-size: 1.1rem;
     color: var(--text-light);
-    margin-bottom: 1.5rem;
+    margin-bottom: 2rem; /* Increased margin for better readability */
+    line-height: 1.8; /* Better line height */
 }
 
 .about-content h4 {
     color: var(--primary-color);
     font-size: 1.3rem;
+    margin-bottom: 1.5rem; /* Better spacing */
 }
 
 .about-content ul li {
-    font-size: 1rem;
+    font-size: 1.05rem; /* Slightly larger font */
     color: var(--text-light);
+    padding: 0.5rem 0; /* Better spacing between list items */
+    line-height: 1.6;
 }
 
 .about-stats {
-    padding: 2rem;
+    padding: 3rem 2rem; /* Increased padding */
 }
 
 .stat-card {
     background: var(--white);
     border-radius: var(--border-radius);
-    padding: 2rem 1rem;
+    padding: 3rem 1.5rem; /* Increased padding for better touch targets */
     box-shadow: var(--shadow-light);
     transition: var(--transition);
     height: 100%;
+    text-align: center;
+    cursor: pointer; /* Indicate interactivity */
 }
 
 .stat-card:hover {
-    transform: translateY(-5px);
+    transform: translateY(-8px); /* Slightly more pronounced hover effect */
     box-shadow: var(--shadow-medium);
 }
 
 .stat-icon {
-    margin-bottom: 1rem;
+    margin-bottom: 1.5rem; /* Better spacing */
 }
 
 .stat-number {
-    font-size: 2.5rem;
+    font-size: 3rem; /* Larger for better visibility */
     font-weight: 700;
     color: var(--primary-color);
-    margin-bottom: 0.5rem;
+    margin-bottom: 1rem; /* Better spacing */
+    line-height: 1;
 }
 
 .stat-label {
     color: var(--text-light);
     font-weight: 500;
     margin: 0;
+    font-size: 1.1rem; /* Slightly larger font */
 }
 
 /* Programs Section */
 .programs-section {
-    padding: 5rem 0;
-}
-
-.program-card {
-    background: var(--white);
-    border-radius: var(--border-radius);
-    padding: 2.5rem 2rem;
-    box-shadow: var(--shadow-light);
-    transition: var(--transition);
-    text-align: center;
-    border: 1px solid rgba(0, 0, 0, 0.05);
-}
-
-.program-card:hover {
-    transform: translateY(-10px);
-    box-shadow: var(--shadow-medium);
-}
-
-.program-icon {
-    margin-bottom: 1.5rem;
-}
-
-.program-content h4 {
-    color: var(--text-dark);
-    font-size: 1.4rem;
-    margin-bottom: 1rem;
-}
-
-.program-content p {
-    color: var(--text-light);
-    margin-bottom: 1.5rem;
-}
-
-.program-features {
-    list-style: none;
-    padding: 0;
-    text-align: left;
-}
-
-.program-features li {
-    color: var(--text-light);
-    margin-bottom: 0.5rem;
-    position: relative;
-    padding-left: 1.5rem;
-}
-
-.program-features li::before {
-    content: '✓';
-    position: absolute;
-    left: 0;
-    color: var(--success-color);
-    font-weight: bold;
+    padding: 6rem 0; /* Increased padding for better spacing */
 }
 
 /* Gallery Section */
 .gallery-section {
-    padding: 5rem 0;
-}
-
-.gallery-item {
-    border-radius: var(--border-radius);
-    overflow: hidden;
-    box-shadow: var(--shadow-light);
-    transition: var(--transition);
-    height: 250px;
-}
-
-.gallery-item:hover {
-    transform: scale(1.05);
-    box-shadow: var(--shadow-medium);
-}
-
-.gallery-placeholder {
-    background: var(--background-light);
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    color: var(--text-light);
-    border: 2px dashed var(--primary-color);
-    border-radius: var(--border-radius);
+    padding: 6rem 0; /* Increased padding for better spacing */
 }
 
 /* Contact Section */
 .contact-section {
-    padding: 5rem 0;
+    padding: 6rem 0; /* Increased padding */
 }
 
 .contact-form-container {
     background: var(--white);
     border-radius: var(--border-radius);
-    padding: 3rem;
+    padding: 4rem 3rem; /* Increased padding for better ergonomics */
     box-shadow: var(--shadow-light);
-    margin-bottom: 3rem;
+    margin-bottom: 4rem; /* Better spacing */
 }
 
 .form-label {
     font-weight: 600;
     color: var(--text-dark);
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.75rem; /* Better spacing */
+    font-size: 1rem; /* Explicit font size */
 }
 
 .form-control {
     border: 2px solid #E9ECEF;
-    border-radius: 8px;
-    padding: 12px 16px;
-    font-size: 1rem;
+    border-radius: 10px; /* More rounded corners */
+    padding: 16px 20px; /* Larger touch targets */
+    font-size: 1.05rem; /* Slightly larger font */
     transition: var(--transition);
+    line-height: 1.5;
+    min-height: 50px; /* Minimum touch target size */
 }
 
 .form-control:focus {
     border-color: var(--primary-color);
-    box-shadow: 0 0 0 0.2rem rgba(255, 107, 107, 0.25);
+    box-shadow: 0 0 0 0.25rem rgba(255, 107, 107, 0.15); /* Improved focus indicator */
+    transform: scale(1.02); /* Subtle scale effect */
+}
+
+.form-control::placeholder {
+    color: #999;
+    opacity: 1;
+}
+
+/* Better spacing for form groups */
+.row .mb-3 {
+    margin-bottom: 2rem !important; /* Increased margin between form fields */
+}
+
+/* Enhanced button spacing in forms */
+.contact-form .btn {
+    margin-top: 1.5rem;
+    padding: 18px 40px; /* Larger buttons for better ergonomics */
+    font-size: 1.1rem;
 }
 
 .contact-info {
     text-align: center;
-    padding: 2rem 1rem;
+    padding: 3rem 1.5rem; /* Increased padding */
+    border-radius: var(--border-radius);
+    background: var(--white);
+    box-shadow: var(--shadow-light);
+    margin-bottom: 2rem;
+    transition: var(--transition);
+}
+
+.contact-info:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-medium);
 }
 
 .contact-icon {
-    margin-bottom: 1rem;
+    margin-bottom: 1.5rem; /* Better spacing */
+    padding: 1rem;
+    background: rgba(255, 107, 107, 0.1);
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 80px;
+    height: 80px;
 }
 
 .contact-info h5 {
     color: var(--text-dark);
     font-weight: 600;
-    margin-bottom: 1rem;
+    margin-bottom: 1.5rem; /* Better spacing */
+    font-size: 1.3rem;
 }
 
 .contact-info p {
     color: var(--text-light);
     margin: 0;
+    font-size: 1.05rem; /* Slightly larger font */
+    line-height: 1.6;
 }
 
 /* Footer */
 .footer {
     background: var(--text-dark);
     color: var(--white);
+    padding: 2rem 0; /* Increased padding */
 }
 
 .footer-brand {
@@ -422,29 +442,39 @@ h1, h2, h3, h4, h5, h6 {
 .footer-text {
     margin: 0;
     opacity: 0.8;
+    font-size: 1rem;
+    line-height: 1.6;
 }
 
 .social-links {
-    margin-bottom: 1rem;
+    margin-bottom: 1.5rem; /* Better spacing */
 }
 
 .social-link {
-    display: inline-block;
-    width: 40px;
-    height: 40px;
+    display: inline-flex; /* Better centering */
+    align-items: center;
+    justify-content: center;
+    width: 50px; /* Larger touch targets */
+    height: 50px;
     background: var(--primary-color);
     color: var(--white);
     border-radius: 50%;
-    text-align: center;
-    line-height: 40px;
     text-decoration: none;
     transition: var(--transition);
+    margin: 0 8px; /* Better spacing */
+    font-size: 1.2rem;
 }
 
 .social-link:hover {
     background: var(--secondary-color);
     color: var(--white);
-    transform: translateY(-2px);
+    transform: translateY(-3px) scale(1.1); /* Enhanced hover effect */
+    box-shadow: var(--shadow-medium);
+}
+
+.social-link:focus {
+    outline: 2px solid var(--white);
+    outline-offset: 2px;
 }
 
 /* Animations */
@@ -466,70 +496,143 @@ h1, h2, h3, h4, h5, h6 {
 /* Responsive Design */
 @media (max-width: 991.98px) {
     .section-title {
-        font-size: 2rem;
+        font-size: 2.2rem; /* Slightly larger for better readability */
     }
     
     .hero-title {
-        font-size: 2.5rem;
+        font-size: 2.8rem;
+    }
+    
+    .hero-subtitle {
+        font-size: 1.3rem;
+    }
+    
+    .navbar-brand {
+        font-size: 1.5rem;
+    }
+    
+    .nav-link {
+        margin: 5px 10px; /* Better spacing on medium screens */
+        padding: 15px 20px !important; /* Larger touch targets */
+    }
+    
+    .contact-form-container {
+        padding: 3rem 2rem; /* Adjusted padding */
+    }
+}
+
+@media (max-width: 767.98px) {
+    .hero-title {
+        font-size: 2.2rem;
     }
     
     .hero-subtitle {
         font-size: 1.2rem;
     }
     
-    .navbar-brand {
-        font-size: 1.5rem;
-    }
-}
-
-@media (max-width: 767.98px) {
-    .hero-title {
-        font-size: 2rem;
-    }
-    
-    .hero-subtitle {
-        font-size: 1.1rem;
-    }
-    
     .section-title {
-        font-size: 1.8rem;
+        font-size: 2rem; /* Larger mobile titles */
+    }
+    
+    .hero-buttons {
+        flex-direction: column; /* Stack buttons vertically */
+        gap: 1rem;
+        width: 100%;
     }
     
     .hero-buttons .btn {
-        display: block;
-        width: 100%;
-        margin-bottom: 1rem;
-    }
-    
-    .hero-buttons .btn:last-child {
-        margin-bottom: 0;
+        width: 100%; /* Full width buttons on mobile */
+        min-height: 55px; /* Larger touch targets on mobile */
+        font-size: 1.1rem;
     }
     
     .contact-form-container {
-        padding: 2rem 1.5rem;
+        padding: 2.5rem 1.5rem; /* Better mobile padding */
     }
     
     .stat-card {
-        margin-bottom: 1rem;
+        margin-bottom: 2rem; /* Better spacing between cards */
+        padding: 2.5rem 1.5rem;
+    }
+    
+    .nav-link {
+        padding: 18px 24px !important; /* Even larger touch targets on mobile */
+        margin: 8px 0; /* Vertical spacing for mobile menu */
+        text-align: center;
+        border-radius: 12px;
+    }
+    
+    .navbar {
+        padding: 1rem 0; /* Adjusted navbar padding */
+    }
+    
+    /* Improved mobile form ergonomics */
+    .form-control {
+        padding: 18px 22px; /* Larger touch targets */
+        font-size: 16px; /* Prevents zoom on iOS */
+        min-height: 55px;
+    }
+    
+    .row .mb-3 {
+        margin-bottom: 2.5rem !important; /* More space between mobile form fields */
     }
 }
 
 @media (max-width: 575.98px) {
     .hero-content {
         text-align: center;
-        padding: 1rem 0;
+        padding: 2rem 0; /* Better mobile padding */
     }
     
     .hero-title {
-        font-size: 1.8rem;
+        font-size: 2rem;
+        line-height: 1.3;
     }
     
     .section-title {
-        font-size: 1.6rem;
+        font-size: 1.8rem;
     }
     
     .contact-form-container {
-        padding: 1.5rem;
+        padding: 2rem 1rem; /* Reduced padding for small screens */
+        margin: 0 0.5rem 3rem; /* Prevent edge touching */
+    }
+    
+    .hero-description {
+        font-size: 1.1rem;
+        max-width: 100%;
+    }
+    
+    .hero-buttons .btn {
+        padding: 20px 30px; /* Extra large touch targets */
+        min-height: 60px;
+        font-size: 1.1rem;
+    }
+    
+    /* Better spacing for small screens */
+    .about-section,
+    .programs-section,
+    .gallery-section,
+    .contact-section {
+        padding: 4rem 0; /* Reduced section padding */
+    }
+    
+    .about-content p,
+    .program-content p {
+        font-size: 1.05rem; /* Slightly larger mobile text */
+        line-height: 1.7;
+    }
+    
+    .contact-info {
+        padding: 2rem 1rem; /* Better mobile contact info padding */
+        margin-bottom: 1.5rem;
+    }
+    
+    .social-link {
+        width: 55px; /* Even larger social links on mobile */
+        height: 55px;
+        font-size: 1.3rem;
+        margin: 0 10px;
     }
 }
 
@@ -571,8 +674,154 @@ html {
 .btn:focus,
 .form-control:focus,
 .nav-link:focus {
+    outline: 3px solid var(--primary-color); /* Thicker focus outline */
+    outline-offset: 3px; /* Better spacing */
+}
+
+/* Enhanced focus for buttons */
+.btn:focus-visible {
+    box-shadow: 0 0 0 0.25rem rgba(255, 107, 107, 0.3);
+}
+
+/* Improved link accessibility */
+a:focus {
     outline: 2px solid var(--primary-color);
     outline-offset: 2px;
+    border-radius: 4px;
+}
+
+/* Better touch targets for interactive elements */
+.navbar-toggler {
+    padding: 8px 12px;
+    border: 2px solid var(--primary-color);
+    border-radius: 8px;
+    min-height: 44px;
+    min-width: 44px;
+}
+
+.navbar-toggler:focus {
+    box-shadow: 0 0 0 0.25rem rgba(255, 107, 107, 0.25);
+    outline: none;
+}
+
+/* Enhanced program cards for better ergonomics */
+.program-card {
+    background: var(--white);
+    border-radius: var(--border-radius);
+    padding: 3rem 2rem; /* Increased padding */
+    box-shadow: var(--shadow-light);
+    transition: var(--transition);
+    text-align: center;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    cursor: pointer; /* Indicate interactivity */
+}
+
+.program-card:hover {
+    transform: translateY(-8px); /* Slightly more pronounced */
+    box-shadow: var(--shadow-medium);
+}
+
+.program-icon {
+    margin-bottom: 2rem; /* Better spacing */
+    padding: 1rem;
+    background: rgba(255, 107, 107, 0.1);
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 100px;
+    height: 100px;
+}
+
+.program-content h4 {
+    color: var(--text-dark);
+    font-size: 1.5rem; /* Larger heading */
+    margin-bottom: 1.5rem; /* Better spacing */
+    line-height: 1.4;
+}
+
+.program-content p {
+    color: var(--text-light);
+    margin-bottom: 2rem; /* Increased margin */
+    font-size: 1.05rem; /* Slightly larger font */
+    line-height: 1.7; /* Better readability */
+}
+
+.program-features {
+    list-style: none;
+    padding: 0;
+    text-align: left;
+}
+
+.program-features li {
+    color: var(--text-light);
+    margin-bottom: 1rem; /* Better spacing */
+    position: relative;
+    padding-left: 2rem; /* More space for checkmark */
+    font-size: 1rem;
+    line-height: 1.6;
+}
+
+.program-features li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: var(--success-color);
+    font-weight: bold;
+    font-size: 1.2rem; /* Larger checkmark */
+}
+
+/* Enhanced gallery items */
+.gallery-item {
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    box-shadow: var(--shadow-light);
+    transition: var(--transition);
+    height: 280px; /* Slightly taller */
+    cursor: pointer;
+}
+
+.gallery-item:hover {
+    transform: scale(1.03); /* Subtle scale */
+    box-shadow: var(--shadow-medium);
+}
+
+.gallery-placeholder {
+    background: var(--background-light);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-light);
+    border: 2px dashed var(--primary-color);
+    border-radius: var(--border-radius);
+    padding: 2rem;
+    transition: var(--transition);
+}
+
+.gallery-placeholder:hover {
+    background: rgba(255, 107, 107, 0.05);
+    border-color: var(--secondary-color);
+}
+
+/* Better spacing for sections */
+.section-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin-bottom: 1.5rem; /* Better spacing */
+    line-height: 1.3;
+}
+
+.section-subtitle {
+    font-size: 1.2rem; /* Larger subtitle */
+    color: var(--text-light);
+    margin-bottom: 3rem; /* More spacing */
+    line-height: 1.6;
+    max-width: 600px; /* Prevent too wide text */
+    margin-left: auto;
+    margin-right: auto;
 }
 
 /* Print Styles */
