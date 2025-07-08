@@ -9,9 +9,45 @@ document.addEventListener('DOMContentLoaded', function() {
     initContactForm();
     initScrollEffects();
     initInteractiveElements();
+    initThemeToggle();
     
     console.log('Star Care Preschool website loaded successfully!');
 });
+
+// Theme Toggle Functionality
+function initThemeToggle() {
+    const themeToggle = document.getElementById('themeToggle');
+    const themeIcon = document.getElementById('themeIcon');
+    const body = document.body;
+    
+    // Check for saved theme preference
+    const savedTheme = localStorage.getItem('theme') || 'light';
+    body.setAttribute('data-theme', savedTheme);
+    updateThemeIcon(savedTheme);
+    
+    themeToggle.addEventListener('click', function() {
+        const currentTheme = body.getAttribute('data-theme');
+        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+        
+        body.setAttribute('data-theme', newTheme);
+        localStorage.setItem('theme', newTheme);
+        updateThemeIcon(newTheme);
+        
+        // Add smooth transition effect
+        body.style.transition = 'all 0.3s ease';
+        setTimeout(() => {
+            body.style.transition = '';
+        }, 300);
+    });
+    
+    function updateThemeIcon(theme) {
+        if (theme === 'dark') {
+            themeIcon.className = 'fas fa-sun';
+        } else {
+            themeIcon.className = 'fas fa-moon';
+        }
+    }
+}
 
 // Navigation functionality
 function initNavigation() {
@@ -141,19 +177,50 @@ function animateCounter(element) {
 // Contact form functionality
 function initContactForm() {
     const contactForm = document.getElementById('contactForm');
+    const imageUpload = document.getElementById('imageUpload');
+    const imagePreview = document.getElementById('imagePreview');
+    let uploadedImages = [];
+    
+    // Initialize EmailJS (you'll need to replace these with actual EmailJS credentials)
+    emailjs.init("YOUR_PUBLIC_KEY"); // Replace with your EmailJS public key
+    
+    // Handle image upload preview
+    if (imageUpload) {
+        imageUpload.addEventListener('change', function(e) {
+            const files = Array.from(e.target.files);
+            
+            files.forEach((file, index) => {
+                if (file.size > 5 * 1024 * 1024) { // 5MB limit
+                    showNotification('Image ' + file.name + ' is too large. Maximum size is 5MB.', 'error');
+                    return;
+                }
+                
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const imageData = {
+                        name: file.name,
+                        data: e.target.result,
+                        size: file.size
+                    };
+                    uploadedImages.push(imageData);
+                    
+                    // Create preview
+                    const previewDiv = document.createElement('div');
+                    previewDiv.className = 'image-preview';
+                    previewDiv.innerHTML = `
+                        <img src="${e.target.result}" alt="Preview">
+                        <button type="button" class="remove-image" onclick="removeImage(${uploadedImages.length - 1})">×</button>
+                    `;
+                    imagePreview.appendChild(previewDiv);
+                };
+                reader.readAsDataURL(file);
+            });
+        });
+    }
     
     if (contactForm) {
         contactForm.addEventListener('submit', function(e) {
             e.preventDefault();
-            
-            // Get form data
-            const formData = new FormData(contactForm);
-            const formObject = {};
-            
-            // Convert FormData to object
-            for (let [key, value] of formData.entries()) {
-                formObject[key] = value;
-            }
             
             // Validate required fields
             const requiredFields = ['parentName', 'childName', 'email', 'phone'];
@@ -178,20 +245,7 @@ function initContactForm() {
             }
             
             if (isValid) {
-                // Simulate form submission
-                const submitButton = contactForm.querySelector('button[type="submit"]');
-                const originalText = submitButton.textContent;
-                
-                submitButton.textContent = 'Sending...';
-                submitButton.disabled = true;
-                
-                // Simulate API call delay
-                setTimeout(() => {
-                    showNotification('Thank you! Your message has been sent. We\'ll contact you soon!', 'success');
-                    contactForm.reset();
-                    submitButton.textContent = originalText;
-                    submitButton.disabled = false;
-                }, 2000);
+                sendEmail();
             } else {
                 showNotification('Please fill in all required fields correctly.', 'error');
             }
@@ -215,6 +269,81 @@ function initContactForm() {
             });
         });
     }
+    
+    function sendEmail() {
+        const submitButton = contactForm.querySelector('button[type="submit"]');
+        const originalText = submitButton.textContent;
+        
+        submitButton.textContent = 'Sending...';
+        submitButton.disabled = true;
+        
+        // Prepare email data
+        const templateParams = {
+            to_email: 'chiragnarwal100@gmail.com',
+            parent_name: document.getElementById('parentName').value,
+            child_name: document.getElementById('childName').value,
+            from_email: document.getElementById('email').value,
+            phone: document.getElementById('phone').value,
+            child_age: document.getElementById('childAge').value || 'Not specified',
+            start_date: document.getElementById('startDate').value || 'Not specified',
+            message: document.getElementById('message').value || 'No message provided',
+            images_count: uploadedImages.length,
+            timestamp: new Date().toLocaleString()
+        };
+        
+        // Since EmailJS has limitations with file uploads, we'll send basic form data
+        // For a production system, you'd want to use a backend service for file handling
+        
+        // Simulate email sending for now (replace with actual EmailJS call)
+        setTimeout(() => {
+            showNotification('Thank you! Your message has been sent to chiragnarwal100@gmail.com. We\'ll contact you soon!', 'success');
+            contactForm.reset();
+            imagePreview.innerHTML = '';
+            uploadedImages = [];
+            submitButton.textContent = originalText;
+            submitButton.disabled = false;
+            
+            // Log the data that would be sent
+            console.log('Email data that would be sent:', templateParams);
+            if (uploadedImages.length > 0) {
+                console.log('Images that would be attached:', uploadedImages.map(img => img.name));
+            }
+        }, 2000);
+        
+        /* 
+        // Uncomment this when you have EmailJS configured:
+        emailjs.send('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', templateParams)
+            .then(function(response) {
+                showNotification('Thank you! Your message has been sent to chiragnarwal100@gmail.com. We\'ll contact you soon!', 'success');
+                contactForm.reset();
+                imagePreview.innerHTML = '';
+                uploadedImages = [];
+                submitButton.textContent = originalText;
+                submitButton.disabled = false;
+            }, function(error) {
+                showNotification('Sorry, there was an error sending your message. Please try again or contact us directly.', 'error');
+                submitButton.textContent = originalText;
+                submitButton.disabled = false;
+                console.error('EmailJS error:', error);
+            });
+        */
+    }
+    
+    // Global function to remove images
+    window.removeImage = function(index) {
+        uploadedImages.splice(index, 1);
+        const previews = imagePreview.querySelectorAll('.image-preview');
+        if (previews[index]) {
+            previews[index].remove();
+        }
+        
+        // Update indices for remaining images
+        const remainingPreviews = imagePreview.querySelectorAll('.image-preview');
+        remainingPreviews.forEach((preview, newIndex) => {
+            const removeBtn = preview.querySelector('.remove-image');
+            removeBtn.setAttribute('onclick', `removeImage(${newIndex})`);
+        });
+    };
 }
 
 // Scroll effects
