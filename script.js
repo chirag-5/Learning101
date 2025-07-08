@@ -1,4 +1,4 @@
-// Star Care Preschool JavaScript
+// Buddha Tech School JavaScript
 
 // Wait for DOM to be fully loaded
 document.addEventListener('DOMContentLoaded', function() {
@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', function() {
     initInteractiveElements();
     initThemeToggle();
     
-    console.log('Star Care Preschool website loaded successfully!');
+    console.log('Buddha Tech School website loaded successfully!');
 });
 
 // Theme Toggle Functionality
@@ -618,7 +618,7 @@ initPerformanceOptimizations();
 const debugMode = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
 
 if (debugMode) {
-    console.log('🌟 Star Care Preschool Website Debug Mode');
+    console.log('🌟 Buddha Tech School Website Debug Mode');
     console.log('📱 Viewport:', window.innerWidth + 'x' + window.innerHeight);
     console.log('🎨 Color scheme:', getComputedStyle(document.documentElement).getPropertyValue('--primary-color'));
     
