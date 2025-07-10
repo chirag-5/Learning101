@@ -1,4 +1,4 @@
-// Mango Studio Portfolio JavaScript
+// LemonStudio Portfolio JavaScript
 
 // Wait for DOM to be fully loaded
 document.addEventListener('DOMContentLoaded', function() {
@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', function() {
     initInteractiveElements();
     initThemeToggle();
     
-    console.log('Mango Studio portfolio website loaded successfully!');
+    console.log('LemonStudio portfolio website loaded successfully!');
 });
 
 // Theme Toggle Functionality
@@ -57,25 +57,11 @@ function initNavigation() {
     // Navbar scroll effect
     window.addEventListener('scroll', function() {
         if (window.scrollY > 50) {
-            navbar.style.background = 'rgba(255, 255, 255, 0.9)';
-            navbar.style.backdropFilter = 'blur(25px)';
-            navbar.style.webkitBackdropFilter = 'blur(25px)';
-            navbar.style.boxShadow = '0 8px 40px rgba(0, 0, 0, 0.15)';
+            navbar.style.background = 'rgba(255, 255, 255, 0.98)';
+            navbar.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.1)';
         } else {
-            navbar.style.background = 'rgba(255, 255, 255, 0.8)';
-            navbar.style.backdropFilter = 'blur(20px)';
-            navbar.style.webkitBackdropFilter = 'blur(20px)';
-            navbar.style.boxShadow = '0 8px 32px rgba(0, 0, 0, 0.1)';
-        }
-        
-        // Update for dark theme
-        const isDarkTheme = document.body.getAttribute('data-theme') === 'dark';
-        if (isDarkTheme) {
-            if (window.scrollY > 50) {
-                navbar.style.background = 'rgba(26, 26, 26, 0.9)';
-            } else {
-                navbar.style.background = 'rgba(26, 26, 26, 0.8)';
-            }
+            navbar.style.background = 'rgba(255, 255, 255, 0.95)';
+            navbar.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.05)';
         }
     });
     
@@ -258,7 +244,7 @@ function initContactForm() {
         
         // Prepare email data
         const templateParams = {
-            to_email: 'hello@mangostudio.com',
+            to_email: 'hello@lemonstudio.com',
             full_name: document.getElementById('fullName').value,
             company: document.getElementById('company').value || 'Not specified',
             from_email: document.getElementById('email').value,
@@ -582,7 +568,7 @@ initPerformanceOptimizations();
 const debugMode = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
 
 if (debugMode) {
-    console.log('🥭 Mango Studio Portfolio Website Debug Mode');
+    console.log('🍋 LemonStudio Portfolio Website Debug Mode');
     console.log('📱 Viewport:', window.innerWidth + 'x' + window.innerHeight);
     console.log('🎨 Color scheme:', getComputedStyle(document.documentElement).getPropertyValue('--primary-color'));
     
