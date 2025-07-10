@@ -1,4 +1,4 @@
-// Star Care Preschool JavaScript
+// LemonStudio Portfolio JavaScript
 
 // Wait for DOM to be fully loaded
 document.addEventListener('DOMContentLoaded', function() {
@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', function() {
     initInteractiveElements();
     initThemeToggle();
     
-    console.log('Star Care Preschool website loaded successfully!');
+    console.log('LemonStudio portfolio website loaded successfully!');
 });
 
 // Theme Toggle Functionality
@@ -61,7 +61,7 @@ function initNavigation() {
             navbar.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.1)';
         } else {
             navbar.style.background = 'rgba(255, 255, 255, 0.95)';
-            navbar.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.1)';
+            navbar.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.05)';
         }
     });
     
@@ -131,48 +131,13 @@ function initAnimations() {
     }, observerOptions);
     
     // Observe elements for animation
-    const animateElements = document.querySelectorAll('.stat-card, .program-card, .gallery-item, .contact-info');
+    const animateElements = document.querySelectorAll('.service-card, .work-item, .contact-info');
     animateElements.forEach(element => {
         element.classList.add('loading');
         observer.observe(element);
     });
-    
-    // Counter animation for statistics
-    const statNumbers = document.querySelectorAll('.stat-number');
-    const countObserver = new IntersectionObserver(function(entries) {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                animateCounter(entry.target);
-                countObserver.unobserve(entry.target);
-            }
-        });
-    }, { threshold: 0.5 });
-    
-    statNumbers.forEach(number => {
-        countObserver.observe(number);
-    });
 }
 
-// Counter animation function
-function animateCounter(element) {
-    const target = element.textContent;
-    const isNumeric = /^\d+/.test(target);
-    
-    if (isNumeric) {
-        const finalValue = parseInt(target);
-        let currentValue = 0;
-        const increment = finalValue / 50;
-        const timer = setInterval(() => {
-            currentValue += increment;
-            if (currentValue >= finalValue) {
-                element.textContent = target; // Keep original format (e.g., "150+", "5★")
-                clearInterval(timer);
-            } else {
-                element.textContent = Math.floor(currentValue).toString();
-            }
-        }, 40);
-    }
-}
 
 // Contact form functionality
 function initContactForm() {
@@ -223,7 +188,7 @@ function initContactForm() {
             e.preventDefault();
             
             // Validate required fields
-            const requiredFields = ['parentName', 'childName', 'email', 'phone'];
+            const requiredFields = ['fullName', 'email'];
             let isValid = true;
             
             requiredFields.forEach(field => {
@@ -279,24 +244,21 @@ function initContactForm() {
         
         // Prepare email data
         const templateParams = {
-            to_email: 'chiragnarwal100@gmail.com',
-            parent_name: document.getElementById('parentName').value,
-            child_name: document.getElementById('childName').value,
+            to_email: 'hello@lemonstudio.com',
+            full_name: document.getElementById('fullName').value,
+            company: document.getElementById('company').value || 'Not specified',
             from_email: document.getElementById('email').value,
-            phone: document.getElementById('phone').value,
-            child_age: document.getElementById('childAge').value || 'Not specified',
-            start_date: document.getElementById('startDate').value || 'Not specified',
+            phone: document.getElementById('phone').value || 'Not specified',
+            service_type: document.getElementById('serviceType').value || 'Not specified',
+            budget: document.getElementById('budget').value || 'Not specified',
             message: document.getElementById('message').value || 'No message provided',
             images_count: uploadedImages.length,
             timestamp: new Date().toLocaleString()
         };
         
-        // Since EmailJS has limitations with file uploads, we'll send basic form data
-        // For a production system, you'd want to use a backend service for file handling
-        
         // Simulate email sending for now (replace with actual EmailJS call)
         setTimeout(() => {
-            showNotification('Thank you! Your message has been sent to chiragnarwal100@gmail.com. We\'ll contact you soon!', 'success');
+            showNotification('Thank you! Your project brief has been sent. We\'ll get back to you within 24 hours!', 'success');
             contactForm.reset();
             imagePreview.innerHTML = '';
             uploadedImages = [];
@@ -304,9 +266,9 @@ function initContactForm() {
             submitButton.disabled = false;
             
             // Log the data that would be sent
-            console.log('Email data that would be sent:', templateParams);
+            console.log('Project brief data that would be sent:', templateParams);
             if (uploadedImages.length > 0) {
-                console.log('Images that would be attached:', uploadedImages.map(img => img.name));
+                console.log('Project references that would be attached:', uploadedImages.map(img => img.name));
             }
         }, 2000);
         
@@ -314,7 +276,7 @@ function initContactForm() {
         // Uncomment this when you have EmailJS configured:
         emailjs.send('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', templateParams)
             .then(function(response) {
-                showNotification('Thank you! Your message has been sent to chiragnarwal100@gmail.com. We\'ll contact you soon!', 'success');
+                showNotification('Thank you! Your project brief has been sent. We\'ll get back to you within 24 hours!', 'success');
                 contactForm.reset();
                 imagePreview.innerHTML = '';
                 uploadedImages = [];
@@ -366,8 +328,8 @@ function initScrollEffects() {
         top: 0;
         left: 0;
         width: 0%;
-        height: 3px;
-        background: linear-gradient(90deg, #FF6B6B, #4ECDC4);
+        height: 2px;
+        background: linear-gradient(90deg, #000000, #666666);
         z-index: 10000;
         transition: width 0.3s ease;
     `;
@@ -383,39 +345,27 @@ function initScrollEffects() {
 
 // Interactive elements
 function initInteractiveElements() {
-    // Gallery item hover effects
-    const galleryItems = document.querySelectorAll('.gallery-item');
-    galleryItems.forEach(item => {
+    // Work item hover effects
+    const workItems = document.querySelectorAll('.work-item');
+    workItems.forEach(item => {
         item.addEventListener('mouseenter', function() {
-            this.style.transform = 'scale(1.05) rotateY(5deg)';
+            this.style.transform = 'scale(1.02)';
         });
         
         item.addEventListener('mouseleave', function() {
-            this.style.transform = 'scale(1) rotateY(0deg)';
+            this.style.transform = 'scale(1)';
         });
     });
     
-    // Program cards hover effects
-    const programCards = document.querySelectorAll('.program-card');
-    programCards.forEach(card => {
+    // Service cards hover effects
+    const serviceCards = document.querySelectorAll('.service-card');
+    serviceCards.forEach(card => {
         card.addEventListener('mouseenter', function() {
-            this.style.background = 'linear-gradient(135deg, rgba(255, 107, 107, 0.05) 0%, rgba(78, 205, 196, 0.05) 100%)';
+            this.style.background = 'linear-gradient(135deg, rgba(0, 0, 0, 0.02) 0%, rgba(0, 0, 0, 0.05) 100%)';
         });
         
         card.addEventListener('mouseleave', function() {
-            this.style.background = 'white';
-        });
-    });
-    
-    // Stat cards click interaction
-    const statCards = document.querySelectorAll('.stat-card');
-    statCards.forEach(card => {
-        card.addEventListener('click', function() {
-            // Add a pulse effect
-            this.style.animation = 'pulse 0.6s ease-in-out';
-            setTimeout(() => {
-                this.style.animation = '';
-            }, 600);
+            this.style.background = 'var(--white)';
         });
     });
     
@@ -423,11 +373,11 @@ function initInteractiveElements() {
     const buttons = document.querySelectorAll('.btn');
     buttons.forEach(button => {
         button.addEventListener('mouseenter', function() {
-            this.style.transform = 'translateY(-2px) scale(1.02)';
+            this.style.transform = 'translateY(-1px)';
         });
         
         button.addEventListener('mouseleave', function() {
-            this.style.transform = 'translateY(0) scale(1)';
+            this.style.transform = 'translateY(0)';
         });
     });
 }
@@ -618,7 +568,7 @@ initPerformanceOptimizations();
 const debugMode = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
 
 if (debugMode) {
-    console.log('🌟 Star Care Preschool Website Debug Mode');
+    console.log('🍋 LemonStudio Portfolio Website Debug Mode');
     console.log('📱 Viewport:', window.innerWidth + 'x' + window.innerHeight);
     console.log('🎨 Color scheme:', getComputedStyle(document.documentElement).getPropertyValue('--primary-color'));
     
